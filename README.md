@@ -2,96 +2,103 @@
 
 
 Below is a template for another sample project. Please follow this template.
-# [Deep Learning Project Template] Enhanced Stable Diffusion: A Deep Learning Approach for Artistic Image Generation
+# [Deep Learning Project Template] A Computer Vision-Based Framework for Industrial Corrosion Detection
 
 ## Introduction
-Enhanced Stable Diffusion is a cutting-edge deep learning project that redefines artistic image generation by leveraging an advanced diffusion process to convert textual descriptions into high-quality images. By integrating a modified UNet architecture with innovative loss functions and enhanced data augmentation strategies, the model iteratively refines a latent noise vector conditioned on text embeddings to produce detailed and visually compelling artwork. This approach not only addresses common challenges such as slow inference times and output inconsistencies found in traditional diffusion models, but also pushes the boundaries of creative image synthesis, paving the way for novel applications in art, design, and multimedia content creation.
+This study addresses the challenge of detecting corrosion effectiveness on industrial surfaces, a critical task for ensuring structural safety and reducing maintenance costs. The research focuses on binary image classification using computer vision and advanced deep learning techniques. It evaluates the performance of Convolutional Neural Network (CNN) based ResNet models in three variants: ResNet18, ResNet50, and ResNet101, with integrated architectural enhancements. The models are trained using transfer learning on the labeled Phase5 Capstone Project dataset. The proposed approach implements a modified focal loss function, which help to improve classification accuracy and address class imbalance.  Additionally, an attention block is incorporated into the network architecture to support the model focus on important regions within the image, enhancing feature extraction. The enhanced model improves performance, robustness, and generalization compared to the baseline models. 
 
 ## Project Metadata
-### Authors
-- **Team:** Mohammad Ahmad, Umar Abdullah and Malik Hussain
+
+### Author
+- **Name:** Bayan Aldahlawi
 - **Supervisor Name:** Dr. Muzammil Behzad
-- **Affiliations:** SABIC, ARAMCO and KFUPM
+- **Affiliation:** KFUPM
 
 ### Project Documents
-- **Presentation:** [Project Presentation](/presentation.pptx)
-- **Report:** [Project Report](/report.pdf)
+- **Code Implementation:** [Jupyter Notebook](/Bayan%20Aldahlawi%20-%20A%20Computer%20Vision-Based%20Framework%20for%20Industrial%20Corrosion%20Detection.ipynb)
+- **Term Paper:** [Project Report](/Bayan%20Aldahlawi%20-%20A%20Computer%20Vision-Based%20Framework%20for%20Industrial%20Corrosion%20Detection.pdf)
+- **Presentation:** [Project Presentation](/Bayan%20Aldahlawi%20-%20A%20Computer%20Vision-Based%20Framework%20for%20Industrial%20Corrosion%20Detection.pptx)
 
 ### Reference Paper
-- [High-Resolution Image Synthesis with Latent Diffusion Models](https://arxiv.org/abs/2112.10752)
+- [A Deep Learning Approach to Industrial Corrosion Detection](https://www.sciencedirect.com/org/science/article/pii/S154622182400777X)
 
 ### Reference Dataset
-- [LAION-5B Dataset](https://laion.ai/blog/laion-5b/)
+- [Phase 5 Capstone Project Dataset](https://github.com/pjsun2012/Phase5_Capstone-Project)
+
 
 
 ## Project Technicalities
 
 ### Terminologies
-- **Diffusion Model:** A generative model that progressively transforms random noise into coherent data.
-- **Latent Space:** A compressed, abstract representation of data where complex features are captured.
-- **UNet Architecture:** A neural network with an encoder-decoder structure featuring skip connections for better feature preservation.
-- **Text Encoder:** A model that converts text into numerical embeddings for downstream tasks.
-- **Perceptual Loss:** A loss function that measures high-level differences between images, emphasizing perceptual similarity.
-- **Tokenization:** The process of breaking down text into smaller units (tokens) for processing.
-- **Noise Vector:** A randomly generated vector used to initialize the diffusion process in generative models.
-- **Decoder:** A network component that transforms latent representations back into image space.
-- **Iterative Refinement:** The process of gradually improving the quality of generated data through multiple steps.
-- **Conditional Generation:** The process where outputs are generated based on auxiliary inputs, such as textual descriptions.
+- **Convolutional Neural Network (CNN):** A deep learning architecture designed to process and analyze spatial data, particularly images.
+- **ResNet Architecture:** A CNN variant that uses residual connections (skip connections) to enable training of very deep networks without degradation.
+- **Focal Loss:** A loss function that down-weights easy examples and focuses learning on hard-to-classify examples, especially useful for class-imbalanced datasets.
+- **Attention Mechanism (MHSA):** Multi-Head Self-Attention (MHSA) focuses on important regions in feature maps, enhancing feature extraction by modeling global dependencies.
+- **Data Augmentation:** A technique that generates during training samples by applying transformations such as flipping, rotation, and scaling, to increase the dataset.
+- **Transfer Learning:** Using a pretrained model (such as ImageNet-trained ResNet) and fine-tuning it for a specific task like corrosion classification.
+
 
 ### Problem Statements
-- **Problem 1:** Achieving high-resolution and detailed images using conventional diffusion models remains challenging.
-- **Problem 2:** Existing models suffer from slow inference times during the image generation process.
-- **Problem 3:** There is limited capability in performing style transfer and generating diverse artistic variations.
+- **Problem 1:** Corrosion datasets are small and imbalanced, leading to overfitting and biased learning.
+- **Problem 2:** Conventional loss functions (e.g., binary cross-entropy) fail to handle class imbalance effectively.
+- **Problem 3:** Models may focus on irrelevant background regions rather than actual corrosion areas, reducing accuracy.
 
-### Loopholes or Research Areas
-- **Evaluation Metrics:** Lack of robust metrics to effectively assess the quality of generated images.
-- **Output Consistency:** Inconsistencies in output quality when scaling the model to higher resolutions.
-- **Computational Resources:** Training requires significant GPU compute resources, which may not be readily accessible.
+### Research Gaps Addressed
+- **Handling Class Imbalance:** Standard models often misclassify minority corrosion cases.
+- **Feature Focus:** Lack of attention mechanisms results in weak feature extraction from corrosion-affected areas.
+- **Overfitting Risk:** Small datasets lead to overfitting without proper augmentation and regularization strategies.
 
-### Problem vs. Ideation: Proposed 3 Ideas to Solve the Problems
-1. **Optimized Architecture:** Redesign the model architecture to improve efficiency and balance image quality with faster inference.
-2. **Advanced Loss Functions:** Integrate novel loss functions (e.g., perceptual loss) to better capture artistic nuances and structural details.
-3. **Enhanced Data Augmentation:** Implement sophisticated data augmentation strategies to improve the model’s robustness and reduce overfitting.
+### Proposed 3 Ideas to Solve the Problems
+1. **Integrating Focal Loss:** Improve model robustness by focusing more on hard-to-classify corrosion samples.
+2. **Embedding Attention Blocks (MHSA):** Enhance spatial feature extraction by guiding the model to important corrosion regions.
+3. **Extensive Data Augmentation:** Expand dataset variability to improve generalization and reduce overfitting risk.
 
 ### Proposed Solution: Code-Based Implementation
-This repository provides an implementation of the enhanced stable diffusion model using PyTorch. The solution includes:
+This repository provides a custom implementation based on PyTorch and keras, featuring:
 
-- **Modified UNet Architecture:** Incorporates residual connections and efficient convolutional blocks.
-- **Novel Loss Functions:** Combines Mean Squared Error (MSE) with perceptual loss to enhance feature learning.
-- **Optimized Training Loop:** Reduces computational overhead while maintaining performance.
+- **Modified ResNet Architectures:** ResNet18, ResNet50, and ResNet101 integrated with Focal Loss and Attention Blocks (MHSA).
+- **Advanced Loss Handling:** Modified focal loss replaces standard binary cross-entropy to address class imbalance.
+- **Optimized Training Strategy:** Transfer learning with pretrained ImageNet weights, coupled with data augmentation techniques, to ensure better corrosion classification across various industrial surfaces.
+
 
 ### Key Components
-- **`model.py`**: Contains the modified UNet architecture and other model components.
-- **`train.py`**: Script to handle the training process with configurable parameters.
-- **`utils.py`**: Utility functions for data processing, augmentation, and metric evaluations.
-- **`inference.py`**: Script for generating images using the trained model.
+- **`model`**: Contains the modified ResNet architectures (ResNet18, ResNet50, ResNet101) integrated with Focal Loss and Attention Blocks (MHSA).
+- **`train`**: Script to handle model training, loss calculation, and optimization with configurable hyperparameters.
+- **`utils`**: Utility functions for data loading, preprocessing (augmentation), evaluation metrics (accuracy, loss curves).
+- **`inference`**: Script for model evaluation and prediction on test images for corrosion detection.
 
 ## Model Workflow
-The workflow of the Enhanced Stable Diffusion model is designed to translate textual descriptions into high-quality artistic images through a multi-step diffusion process:
+The workflow of the Enhanced ResNet-based Corrosion Detection Model is designed to classify industrial surfaces into corroded and non-corroded categories through deep feature extraction and improved loss handling:
 
 1. **Input:**
-   - **Text Prompt:** The model takes a text prompt (e.g., "A surreal landscape with mountains and rivers") as the primary input.
-   - **Tokenization:** The text prompt is tokenized and processed through a text encoder (such as a CLIP model) to obtain meaningful embeddings.
-   - **Latent Noise:** A random latent noise vector is generated to initialize the diffusion process, which is then conditioned on the text embeddings.
+   - **Image Input:** The model takes a 2D image of an industrial surface (e.g., pipeline, metal plate) as input.
+   - **Preprocessing:** Images are resized, normalized (ImageNet statistics), and augmented (flips, rotations) to improve robustness during training.
 
-2. **Diffusion Process:**
-   - **Iterative Refinement:** The conditioned latent vector is fed into a modified UNet architecture. The model iteratively refines this vector by reversing a diffusion process, gradually reducing noise while preserving the text-conditioned features.
-   - **Intermediate States:** At each step, intermediate latent representations are produced that increasingly capture the structure and details dictated by the text prompt.
+2. **Feature Extraction:**
+   - **Backbone Network:** Images are passed through a pretrained ResNet (18, 50, or 101), where spatial features are extracted.
+   - **Attention Enhancement:** A Multi-Head Self-Attention (MHSA) block focuses on important regions within feature maps, reducing background noise and improving critical feature representation.
 
-3. **Output:**
-   - **Decoding:** The final refined latent representation is passed through a decoder (often part of a Variational Autoencoder setup) to generate the final image.
-   - **Generated Image:** The output is a synthesized image that visually represents the input text prompt, complete with artistic style and detail.
+3. **Classification Head:**
+   - **Fully Connected Layers:** After feature extraction, a classification head processes the output to predict the probability of corrosion.
+   - **Loss Handling:** A modified Focal Loss is used to address class imbalance by emphasizing learning from hard-to-classify corrosion cases.
+
+4. **Output:**
+   - **Prediction:** The final model outputs a binary prediction — corroded or non-corroded — for each input image.
+   - **Evaluation:** Model performance is assessed using accuracy, and training/validation loss curves.
+
 
 ## How to Run the Code
 
+## How to Run the Project
+
 1. **Clone the Repository:**
     ```bash
-    git clone https://github.com/yourusername/enhanced-stable-diffusion.git
-    cd enhanced-stable-diffusion
+    git clone https://github.com/BRAIN-Lab-AI/Corrosion-Detection-Using-Deep-Learning.git
+    cd Corrosion-Detection-Using-Deep-Learning
     ```
 
 2. **Set Up the Environment:**
-    Create a virtual environment and install the required dependencies.
+    Create a virtual environment and install the required dependencies:
     ```bash
     python3 -m venv venv
     source venv/bin/activate  # On Windows use: venv\Scripts\activate
@@ -99,20 +106,23 @@ The workflow of the Enhanced Stable Diffusion model is designed to translate tex
     ```
 
 3. **Train the Model:**
-    Configure the training parameters in the provided configuration file and run:
+    Train the ResNet model (ResNet18, ResNet50, or ResNet101) with Focal Loss and Attention Block enhancements.
     ```bash
-    python train.py --config configs/train_config.yaml
+    python train.py --model resnet50 --epochs 100 --batch_size 32 --learning_rate 0.0001
+    ```
+    *(You can change `--model` to `resnet18` or `resnet101` based on the variant you want to train.)*
+
+4. **Evaluate the Model:**
+    After training, evaluate the model performance on validation or test datasets.
+    ```bash
+    python inference.py --checkpoint path/to/best_model.pth --input_folder path/to/test_images/
     ```
 
-4. **Generate Images:**
-    Once training is complete, use the inference script to generate images.
-    ```bash
-    python inference.py --checkpoint path/to/checkpoint.pt --input "A surreal landscape with mountains and rivers"
-    ```
+---
 
 ## Acknowledgments
-- **Open-Source Communities:** Thanks to the contributors of PyTorch, Hugging Face, and other libraries for their amazing work.
-- **Individuals:** Special thanks to bla, bla, bla for the amazing team effort, invaluable guidance and support throughout this project.
-- **Resource Providers:** Gratitude to ABC-organization for providing the computational resources necessary for this project.
+- **Open-Source Communities:** Thanks to the contributors of PyTorch, keras, and other libraries that made this project possible.
+- **Supervision:** Special thanks to Dr. Muzammil Behzad for his invaluable guidance and continuous support throughout the project.
+- **Resource Providers:** Gratitude to KFUPM and supporting platforms for providing the computational resources necessary for training and evaluation.
 
 
